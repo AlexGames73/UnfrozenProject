@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>bcbf61ae-a214-422d-bfde-f971e15d88a8</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>UnfrozenProject.Packages</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Acks\AuthUserAck.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Acks\GetMessagesAck.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Acks\LogOutUserAck.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Acks\SendMessageAck.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Answers\AuthUserAns.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Answers\GetMessagesAns.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Answers\SendMessageAns.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PackageType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Structs\Message.cs" />
+  </ItemGroup>
+</Project>
