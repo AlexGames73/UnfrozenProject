@@ -10,9 +10,9 @@ public class MessageListItem : MonoBehaviour
 
     public void SetMessage(Message message)
     {
-        messageText.text = $"[{message.DateTime}] ({message.FromUsername}) - {message.Content}";
-        messageText.color = ColorTypeConverter.FromArgb(message.FromColor);
-        isOnlineStatus.color = message.IsOnline 
+        messageText.text = $"[{message.DateTime}] ({message.FromUser.Username}) - {message.Content}";
+        messageText.color = ColorTypeConverter.FromArgb(message.FromUser.Color);
+        isOnlineStatus.color = message.FromUser.IsOnline 
             ? new Color(0f, 1f, 0f, 0.56f) 
             : new Color(0.69f, 0.69f, 0.69f);
     }

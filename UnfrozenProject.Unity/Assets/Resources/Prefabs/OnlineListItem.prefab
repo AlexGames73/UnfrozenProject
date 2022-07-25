@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7314020353088472151}
   - component: {fileID: 7314020353088472150}
   m_Layer: 5
-  m_Name: MessageText
+  m_Name: UsernameText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -90,14 +90,14 @@ GameObject:
   - component: {fileID: 7314020354105004047}
   - component: {fileID: 7314020354105004049}
   - component: {fileID: 7314020354105004048}
-  - component: {fileID: 7314020354105004050}
+  - component: {fileID: 944378499}
   m_Layer: 5
-  m_Name: MessageListItem
+  m_Name: OnlineListItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7314020354105004047
 RectTransform:
   m_ObjectHideFlags: 0
@@ -157,7 +157,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &7314020354105004050
+--- !u!114 &944378499
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -166,7 +166,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7314020354105004046}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f02dd8d4c8fe08a428c6f4c546a84729, type: 3}
+  m_Script: {fileID: 11500000, guid: 52133833577d6124d99a70416b4d6441, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   messageText: {fileID: 7314020353088472150}

@@ -1,3 +1,4 @@
+using System;
 using Acks;
 using Network;
 using Network.Factories;
@@ -9,10 +10,18 @@ public class LogInHandler : MonoBehaviour
     [SerializeField] private InputField usernameInputField;
     [SerializeField] private Text usernameInputFieldError;
     [SerializeField] private FlexibleColorPicker flexibleColorPicker;
+    [SerializeField] private Text exitButtonText;
 
     [SerializeField] private GameObject logInCanvas;
     [SerializeField] private GameObject messagesCanvas;
-    
+
+    private CanvasGroup _logInCanvasGroup;
+
+    private void Awake()
+    {
+        _logInCanvasGroup = logInCanvas.GetComponent<CanvasGroup>();
+    }
+
     public void LogInClicked()
     {
         if (TcpClient.Instance.CurrentSession == null)
@@ -20,7 +29,9 @@ public class LogInHandler : MonoBehaviour
             Debug.LogError("Server is not reached!");
             return;
         }
-        
+
+        _logInCanvasGroup.interactable = false;
+        exitButtonText.text = $"Exit ({usernameInputField.text})";
         TcpClient.Instance.IoCService.GetInstance<AuthUserFactory>().Send(
             usernameInputField.text, flexibleColorPicker.color);
     }
@@ -35,11 +46,13 @@ public class LogInHandler : MonoBehaviour
 
     public void LoggedInError()
     {
+        _logInCanvasGroup.interactable = true;
         usernameInputFieldError.text = TcpClient.Instance.CurrentSession.LogInError;
     }
 
     public void LoggedIn()
     {
+        _logInCanvasGroup.interactable = true;
         usernameInputFieldError.text = "";
         if (TcpClient.Instance.CurrentSession == null)
         {

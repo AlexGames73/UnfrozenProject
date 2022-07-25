@@ -6,10 +6,17 @@ namespace Server.Database;
 [Dependency]
 internal class DatabaseSettingsProvider : IDatabaseSettingsProvider
 {
-    public void RegisterConnectionString(string connectionString)
+    public void RegisterNpgsqlConnectionString(string connectionString)
     {
         var builder = new DbContextOptionsBuilder<DatabaseContext>();
         builder.UseNpgsql(connectionString);
+        Options = builder.Options;
+    }
+
+    public void RegisterSqlLiteConnectionString(string connectionString)
+    {
+        var builder = new DbContextOptionsBuilder<DatabaseContext>();
+        builder.UseSqlite(connectionString);
         Options = builder.Options;
     }
 

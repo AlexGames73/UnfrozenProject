@@ -11,12 +11,15 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Acks\AuthUserAck.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Acks\GetMessagesAck.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Acks\GetUsersAck.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Acks\LogOutUserAck.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Acks\SendMessageAck.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Answers\AuthUserAns.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Answers\GetMessagesAns.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Answers\SendMessageAns.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Answers\GetUsersAns.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Answers\UpdateAppAns.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PackageType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Structs\Message.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Structs\User.cs" />
   </ItemGroup>
 </Project>

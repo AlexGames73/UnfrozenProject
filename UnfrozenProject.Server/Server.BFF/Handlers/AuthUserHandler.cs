@@ -1,6 +1,7 @@
 ﻿using System.Drawing;
 using Acks;
 using Answers;
+using Server.BFF.Factories;
 using Server.DAL.Logic.BindingModels;
 using Server.DAL.Logic.Repositories;
 using TriaStudios.NetworkLib.Core.Abstract;
@@ -10,6 +11,7 @@ namespace Server.BFF.Handlers;
 public class AuthUserHandler : Handler<AuthUserAck, GameSession>
 {
     private readonly IUserRepository _userRepository;
+    private readonly UpdateAppFactory _updateAppFactory;
     
     protected override async Task HandleAsync(GameSession session, AuthUserAck model)
     {
@@ -38,12 +40,6 @@ public class AuthUserHandler : Handler<AuthUserAck, GameSession>
             Error = ""
         });
         
-        foreach (var connectedSession in ConnectedSessions)
-        {
-            if (connectedSession.UserId.HasValue)
-            {
-                connectedSession.Send(new SendMessageAns());
-            }
-        }
+        _updateAppFactory.Send(ConnectedSessions.Where(x => x.UserId.HasValue).ToArray());
     }
 }

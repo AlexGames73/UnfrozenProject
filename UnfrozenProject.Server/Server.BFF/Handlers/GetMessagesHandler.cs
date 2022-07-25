@@ -31,9 +31,13 @@ public class GetMessagesHandler : Handler<GetMessagesAck, GameSession>
                 {
                     DateTime = x.DateTime.AddMinutes(session.TimeZoneMinutesOffset).ToString("g"),
                     Content = x.Content,
-                    FromColor = x.FromUser.Color.ToArgb(),
-                    FromUsername = x.FromUser.Username,
-                    IsOnline = ConnectedSessions.Any(y => y.UserId == x.FromUser.Id)
+                    FromUser = new User
+                    {
+                        Color = x.FromUser.Color.ToArgb(),
+                        Username = x.FromUser.Username,
+                        IsOnline = ConnectedSessions.Any(y => y.UserId == x.FromUser.Id),
+                        UserId = x.FromUser.Id.ToString()
+                    }
                 })
                 .ToList()
         });

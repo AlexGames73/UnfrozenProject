@@ -31,15 +31,21 @@ public class UserRepository : IUserRepository
         return user.Id;
     }
 
-    public async Task<PageView<UserView>> ReadAsync(UserFilterBinding filter, PageBinding page)
+    public async Task<PageView<UserView>> ReadAsync(UserFilterBinding? filter, PageBinding? page)
     {
         await using var context = _databaseSettingsProvider.CreateDbContext();
 
         var queryable = MakeFilter(context, filter).AsNoTracking();
         var totalCount = await queryable.CountAsync();
+
+        if (page != null && page.Count != 0)
+        {
+            queryable = queryable
+                .Skip(page.Offset)
+                .Take(page.Count);
+        }
+        
         var users = await queryable
-            .Skip(page.Offset)
-            .Take(page.Count)
             .Select(x => new UserView
             {
                 Id = x.Id,
@@ -47,6 +53,7 @@ public class UserRepository : IUserRepository
                 Color = Color.FromArgb(x.Color)
             })
             .ToArrayAsync();
+        
         return new PageView<UserView>
         {
             TotalCount = totalCount,
@@ -54,7 +61,7 @@ public class UserRepository : IUserRepository
         };
     }
 
-    public async Task DeleteAsync(UserFilterBinding filter)
+    public async Task DeleteAsync(UserFilterBinding? filter)
     {
         await using var context = _databaseSettingsProvider.CreateDbContext();
 
@@ -67,8 +74,13 @@ public class UserRepository : IUserRepository
         await context.SaveChangesAsync();
     }
 
-    private static IQueryable<User> MakeFilter(DatabaseContext context, UserFilterBinding filter)
+    private static IQueryable<User> MakeFilter(DatabaseContext context, UserFilterBinding? filter)
     {
+        if (filter == null)
+        {
+            return context.Users.Where(x => !x.Deleted);
+        }
+        
         var colorsInts = filter.Colors.Select(x => x.ToArgb()).ToArray();
         return context.Users
             .Where(x => filter.UserIds.Count == 0 || filter.UserIds.Contains(x.Id))

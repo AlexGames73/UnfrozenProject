@@ -16,7 +16,7 @@
 
     <ItemGroup>
         <ProjectReference Include="..\Server.DAL.Logic\Server.DAL.Logic.csproj" />
-        <ProjectReference Include="..\Server.DAL.PostgreSQL\Server.DAL.PostgreSQL.csproj" />
+        <ProjectReference Include="..\Server.DAL.Database\Server.DAL.Database.csproj" />
     </ItemGroup>
 
     <Import Project="..\..\UnfrozenProject.Unity\Assets\Scripts\UnfrozenProject.Packages\UnfrozenProject.Packages.projitems" Label="Shared" />

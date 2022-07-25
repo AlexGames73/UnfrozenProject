@@ -1,6 +1,6 @@
 ﻿using System.Net;
-using Answers;
 using Server.BFF;
+using Server.BFF.Factories;
 using Server.Database;
 using TriaStudios.NetworkLib.Core.Abstract;
 using TriaStudios.NetworkLib.Core.Middlewares;
@@ -13,13 +13,9 @@ using var server = NetworkSocket<GameSession>.Builder()
     {
         session.UserId = null;
         Console.WriteLine($"{session.FromInfo.EndPoint} Disconnected!");
-        foreach (var gameSession in server.Sessions)
-        {
-            if (gameSession.UserId.HasValue)
-            {
-                gameSession.Send(new SendMessageAns());
-            }
-        }
+
+        var gameSessions = server.Sessions.Where(x => x.UserId.HasValue).ToArray();
+        server.IoCService.GetInstance<UpdateAppFactory>().Send(gameSessions);
     })
     .AddPipeline(builder =>
     {
@@ -28,6 +24,7 @@ using var server = NetworkSocket<GameSession>.Builder()
     .BuildServer();
 
 server.IoCService.GetInstance<IDatabaseSettingsRegistration>()
-    .RegisterConnectionString("Host=localhost;Port=5432;Database=unfrozen-project;User id=postgres;Password=postgres;");
+    .RegisterSqlLiteConnectionString("Data Source=UnfrozenDatabase.sqlite;");
+    // .RegisterNpgsqlConnectionString("Host=localhost;Port=5432;Database=unfrozen-project;User id=postgres;Password=postgres;");
 
 await server.RunAsync();

@@ -21,6 +21,8 @@ namespace Network
 
         public UnityEvent<List<Message>> messagesUpdateEvent;
 
+        public UnityEvent<List<User>> usersUpdateEvent;
+
         #endregion
         
         public GameSession CurrentSession { get; private set; }

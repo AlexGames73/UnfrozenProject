@@ -3,11 +3,14 @@
     AuthUserAck = 0,
     AuthUserAns = 1,
     
-    GetMessagesAck = 2,
-    GetMessagesAns = 3,
+    LogOutUserAck = 2,
     
-    SendMessageAck = 4,
-    SendMessageAns = 5,
+    GetMessagesAck = 100,
+    GetMessagesAns = 101,
     
-    LogOutUserAck = 6,
+    SendMessageAck = 102,
+    UpdateAppAns = 103,
+    
+    GetUsersAck = 110,
+    GetUsersAns = 111
 }

@@ -5,7 +5,7 @@ VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Server.BFF", "Server.BFF\Server.BFF.csproj", "{3F8BD6CF-484B-4F06-9200-FF3F54ADBA60}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Server.DAL.PostgreSQL", "Server.DAL.PostgreSQL\Server.DAL.PostgreSQL.csproj", "{5CD96425-0614-486D-9F0F-00482CE0AB3F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Server.DAL.Database", "Server.DAL.Database\Server.DAL.Database.csproj", "{5CD96425-0614-486D-9F0F-00482CE0AB3F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Server.DAL.Logic", "Server.DAL.Logic\Server.DAL.Logic.csproj", "{2407E2AA-8C93-494A-978F-123B5B2D913C}"
 EndProject

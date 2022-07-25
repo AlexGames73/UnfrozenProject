@@ -1,20 +1,16 @@
 ﻿using Acks;
-using Answers;
+using Server.BFF.Factories;
 using TriaStudios.NetworkLib.Core.Abstract;
 
 namespace Server.BFF.Handlers;
 
 public class LogOutUserHandler : Handler<LogOutUserAck, GameSession>
 {
+    private readonly UpdateAppFactory _updateAppFactory;
+    
     protected override void Handle(GameSession session, LogOutUserAck model)
     {
         session.UserId = null;
-        foreach (var gameSession in ConnectedSessions)
-        {
-            if (gameSession.UserId.HasValue)
-            {
-                gameSession.Send(new SendMessageAns());
-            }
-        }
+        _updateAppFactory.Send(ConnectedSessions.Where(x => x.UserId.HasValue).ToArray());
     }
 }
